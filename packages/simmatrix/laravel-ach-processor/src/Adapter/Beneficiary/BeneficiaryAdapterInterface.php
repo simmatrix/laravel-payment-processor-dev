@@ -4,38 +4,33 @@ namespace Simmatrix\PaymentProcessor\Adapter\Beneficiary;
 interface BeneficiaryAdapterInterface
 {
     /**
-     * Lines for the address. HSBC actually supports up to 5 lines.
+     * The data that you can refer back to your own database, example, the employee number
+     * @return string
      */
-    public function getAddress1();
-    public function getAddress2();
-    public function getAddress3();
+    public function getUserID();
 
-    //Used for HSBC
-    public function getFullname();
-    //Used for UOB
-    public function getName1();
-    public function getName2();
-    public function getName3();
-
+    /**
+     * This is the amount to credit into beneficiary account (Maximum: 16)
+     * Will return with zero-padding (e.g. 0000000000002.00)
+     * @return string
+     */
     public function getPaymentAmount();
-    public function getPaymentDateTimeFormatted();
-    public function getPaymentId();
-    public function getPostcode();
 
     /**
-     * @return String
-     * For HSBC.
-     * "M" - Mr
-     * "R" - Mrs
-     * "S" - Ms
-     * "O" - Other
+     * This is the account number of the beneficiary (Maximum length: 20)
+     * @return string
      */
-    public function getRecipientTitleFlag();
+    public function getAccountNumber();
 
     /**
-     * @return String
-     * A description for title flag, if the value was O.
+     * This is the account name of the beneficiary (Maximum length: 20)
+     * @return string
      */
-    public function getRecipientTitleDescription();
-    public function getUserId();
+    public function getPayeeName();
+
+    /**
+     * This can either be the IC number or the company registration number (Maximum length: 12)
+     * @return string
+     */
+    public function getSecondPartyReference();
 }

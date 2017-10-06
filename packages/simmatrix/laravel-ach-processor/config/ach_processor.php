@@ -1,56 +1,61 @@
 <?php
+
 return [
-    //copy the _example keys below and fill them in.
 
-    'hsbc_example' => [
-        'beneficiary_adapter' => \Chalcedonyt\COSPRocessor\Adapter\ExampleBeneficiaryAdapter::class,
+    'hsbc' => [
 
-        //File Header
-        'file_format'                           => 'IFILE',
-        'file_type'                             => 'CSV',
-        'hexagon_abc_customer_id'               => '',
-        'hsbcnet_id'                            => '',
-        'file_version'                          => '1.0',
+        'company_a' => [
 
-        //Batch Header
-        'first_party_account'                   => '',
-        'first_party_account_country_code'      => 'MY',
-        'first_party_account_institution_code'  => 'HBMB',
-        'first_party_account_currency'          => 'MYR',
+            'beneficiary_adapter' => \Simmatrix\ACHProcessor\Adapter\ExampleBeneficiaryAdapter::class,
 
-        //COS (Txnal)
-        //COS Details Record (ICD)
-        'debit_acc_country'                     => 'MY',
-        'debit_acc_institution'                 => 'HBMB',
-        'debit_acc_number'                      => '',
-        'debit_currency'                        => 'MYR',
-        'instruction_currency'                  => 'MYR',
-        'clearing_bank_country'                 => 'MY',
-        'layout_template_id'                    => '',
-        'drawing_location'                      => 'Penang',
+            // Batch Header Record
+            'country_code' => 'MY',                     // maximum length: 2
+            'first_party_account_branch' => 123,        // maximum length: 3
+            'first_party_account_serial' => 123456,     // maximum length: 6
+            'first_party_account_suffix' => 001,        // maximum length: 3
+            'payment_description' => 'SALARY NOV2017',  // maximum length: 24
 
-        //beneficiary - record line
-        'bene_country'                          => 'MY',
+            // Data Record
+            'autopay_currency' => 'MYR',                // maximum length: 3
+            'payment_currency' => 'MYR',                // maximum length: 3
 
-        //beneficiary - advising record line
-        'domicile_of_email_recipient'           => 'MY'
+        ],
+
+        // If you have a subsidiary company, you can copy the structure of the key above
+        'company_b' => [
+
+            'beneficiary_adapter' => \Simmatrix\ACHProcessor\Adapter\ExampleBeneficiaryAdapter::class,
+
+            // Batch Header Record
+            'country_code' => 'MY',                     // maximum length: 2
+            'first_party_account_branch' => 123,        // maximum length: 3
+            'first_party_account_serial' => 123456,     // maximum length: 6
+            'first_party_account_suffix' => 001,        // maximum length: 3
+
+            // Data Record
+            'autopay_currency' => 'MYR',                // maximum length: 3
+            'payment_currency' => 'MYR',                // maximum length: 3
+
+        ],
+
     ],
 
-    'uob_example' => [
-        'beneficiary_adapter' => \Chalcedonyt\COSPRocessor\Adapter\ExampleBeneficiaryAdapter::class,
+    'uob' => [
 
-        //file header
-        'company_id'                            => '',
+        'company_a' => [
 
-        //beneficiary
-        'payment_currency'                      => 'SGD',
-        'beneficiary_countrycode'               => 'SG',
-        'payment_currency'                      => 'SGD',
-        'settlement_ac_no'                      => '',
+            'beneficiary_adapter' => \Simmatrix\ACHProcessor\Adapter\ExampleBeneficiaryAdapter::class,
 
-        //for the generated file
-        'filename_prefix'                       => 'UCPI'
+        ],
+
+        'company_b' => [
+
+            'beneficiary_adapter' => \Simmatrix\ACHProcessor\Adapter\ExampleBeneficiaryAdapter::class,
+
+        ],
 
     ]
+
 ];
+
 ?>

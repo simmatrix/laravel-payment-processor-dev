@@ -17,11 +17,20 @@ class ConfigurableStringColumnFactory
      * @param String An optional label for the column, used in error messages.
      * @return Column
      */
-    public static function create($config, $config_key, $label = ''){
+    public static function create($config, $config_key, $label = '', $maximum_length = NULL, $chop_off_extra_characters = TRUE){
         if( !$config -> has($config_key)){
-            throw new PaymentProcessorColumnException('Could not find the config option '.$config_key);
+            throw new PaymentProcessorColumnException('Could not find the config option ' . $config_key);
         }
-        $value = (string)$config -> get($config_key);;
+        $value = (string)$config -> get($config_key);
+        if ( $maximum_length ) {
+            if ( strlen( $value ) > $maximum_length ) {
+                if ( $chop_off_extra_characters ) {
+                    $value = substr( $value, 0, $maximum_length );
+                } else {
+                    throw new PaymentProcessorColumnException('The config key "' . $config_key . '" has exceeded the maximum length of ' . $maximum_length);
+                }
+            }
+        }
         $column = new Column();
         $column -> setLabel($label);
         $column -> setValue($value);

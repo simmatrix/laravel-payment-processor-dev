@@ -11,7 +11,7 @@ class DateColumn extends Column implements Stringable
     protected $date;
 
     /**
-     * @var String representation of date, passed to datetime -> format
+     * @var String representation of date, to be passed to DateTime -> format( ... )
      */
     protected $format;
 
