@@ -1,15 +1,15 @@
 <?php
 
-namespace Simmatrix\PaymentProcessor\Factory\HSBC;
+namespace Simmatrix\ACHProcessor\Factory\HSBC;
 
-use Simmatrix\PaymentProcessor\Line\Line;
-use Simmatrix\PaymentProcessor\Beneficiary;
-use Simmatrix\PaymentProcessor\BeneficiaryLine;
-use Simmatrix\PaymentProcessor\Adapter\Beneficiary\BeneficiaryAdapterInterface;
-use Simmatrix\PaymentProcessor\Factory\Column\RightPaddedStringColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\LeftPaddedZerofillStringColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\PresetStringColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\ConfigurableStringColumnFactory;
+use Simmatrix\ACHProcessor\Line\Line;
+use Simmatrix\ACHProcessor\Beneficiary;
+use Simmatrix\ACHProcessor\BeneficiaryLine;
+use Simmatrix\ACHProcessor\Adapter\Beneficiary\BeneficiaryAdapterInterface;
+use Simmatrix\ACHProcessor\Factory\Column\RightPaddedStringColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\LeftPaddedZerofillStringColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\PresetStringColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\ConfigurableStringColumnFactory;
 
 class HSBCBeneficiaryFactory
 {

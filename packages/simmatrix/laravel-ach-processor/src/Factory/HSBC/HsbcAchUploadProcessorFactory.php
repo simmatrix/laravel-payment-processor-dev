@@ -1,13 +1,13 @@
 <?php
 
-namespace Simmatrix\PaymentProcessor\Factory\HSBC;
+namespace Simmatrix\ACHProcessor\Factory\HSBC;
 
-use Simmatrix\PaymentProcessor\Factory\HSBC\Header\HSBCFileHeader;
-use Simmatrix\PaymentProcessor\Factory\HSBC\Header\HSBCBatchHeader;
+use Simmatrix\ACHProcessor\Factory\HSBC\Header\HSBCFileHeader;
+use Simmatrix\ACHProcessor\Factory\HSBC\Header\HSBCBatchHeader;
 
-use Simmatrix\PaymentProcessor\Factory\HSBC\HSBCBeneficiaryFactory;
-use Simmatrix\PaymentProcessor\Adapter\Beneficiary\BeneficiaryAdapterInterface;
-use Simmatrix\PaymentProcessor\ACHUploadProcessor;
+use Simmatrix\ACHProcessor\Factory\HSBC\HSBCBeneficiaryFactory;
+use Simmatrix\ACHProcessor\Adapter\Beneficiary\BeneficiaryAdapterInterface;
+use Simmatrix\ACHProcessor\ACHUploadProcessor;
 
 use Illuminate\Config\Repository;
 

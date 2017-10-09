@@ -1,6 +1,6 @@
 <?php
 
-namespace Simmatrix\PaymentProcessor;
+namespace Simmatrix\ACHProcessor;
 
 interface Stringable
 {

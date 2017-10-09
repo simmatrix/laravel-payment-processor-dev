@@ -1,24 +1,24 @@
 <?php
 
-namespace Simmatrix\PaymentProcessor\Factory\UOB;
+namespace Simmatrix\ACHProcessor\Factory\UOB;
 
-use Simmatrix\PaymentProcessor\Factory\UOB\Header\UOBFileHeader;
-use Simmatrix\PaymentProcessor\Factory\UOB\Header\UOBBatchHeader;
-use Simmatrix\PaymentProcessor\Factory\UOB\Header\UOBBatchTrailer;
-use Simmatrix\PaymentProcessor\Factory\UOB\UOBBeneficiaryFactory;
+use Simmatrix\ACHProcessor\Factory\UOB\Header\UOBFileHeader;
+use Simmatrix\ACHProcessor\Factory\UOB\Header\UOBBatchHeader;
+use Simmatrix\ACHProcessor\Factory\UOB\Header\UOBBatchTrailer;
+use Simmatrix\ACHProcessor\Factory\UOB\UOBBeneficiaryFactory;
 
-use Simmatrix\PaymentProcessor\Adapter\Beneficiary\BeneficiaryAdapterInterface;
-use Simmatrix\PaymentProcessor\COSUploadProcessor;
+use Simmatrix\ACHProcessor\Adapter\Beneficiary\BeneficiaryAdapterInterface;
+use Simmatrix\ACHProcessor\ACHUploadProcessor;
 
 use Illuminate\Config\Repository;
 
-class UOBCOSUploadProcessorFactory
+class UobAchUploadProcessorFactory
 {
     /**
      * @param Collection of entries to be passed into the adapter
      * @param String The config key to read from
      * @param Int The sequence number for file name generation. If multiple files are generated in a day, this number should be incremented.
-     * @return COSUploadProcessor
+     * @return ACHUploadProcessor
      */
     public static function create($beneficiaries, $config_key, $sequence_number = 1)
     {
@@ -33,11 +33,11 @@ class UOBCOSUploadProcessorFactory
             return UOBBeneficiaryFactory::create($beneficiary, $config_key);
         }) -> toArray();
 
-        $cos = new COSUploadProcessor($beneficiaries, $config_key);
+        $ach = new ACHUploadProcessor($beneficiaries, $config_key);
 
         $file_name = static::getFileName($sequence_number);
-        $cos -> setFileName($file_name);
-        $cos -> setFileExtension('txt');
+        $ach -> setFileName($file_name);
+        $ach -> setFileExtension('txt');
         $file_header = new UOBFileHeader($beneficiaries, $config_key);
         $file_header -> setFileName($file_name);
         //UOB uses fixed length strings, so no column delimiters are needed
@@ -49,12 +49,12 @@ class UOBCOSUploadProcessorFactory
         $batch_trailer = new UOBBatchTrailer($beneficiaries, $config_key);
         $batch_trailer -> setColumnDelimiter("");
 
-        $cos -> setFileHeader($file_header);
-        $cos -> setBatchHeader($batch_header);
-        $cos -> setBatchTrailer($batch_trailer);
-        $cos -> setBeneficiaryLines($beneficiary_lines);
-        $cos -> setIdentifier($file_header -> getCheckSum());
-        return $cos;
+        $ach -> setFileHeader($file_header);
+        $ach -> setBatchHeader($batch_header);
+        $ach -> setBatchTrailer($batch_trailer);
+        $ach -> setBeneficiaryLines($beneficiary_lines);
+        $ach -> setIdentifier($file_header -> getCheckSum());
+        return $ach;
     }
 
     /**

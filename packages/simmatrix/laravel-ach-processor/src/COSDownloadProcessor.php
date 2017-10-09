@@ -1,8 +1,8 @@
 <?php
 
-namespace Simmatrix\PaymentProcessor;
+namespace Simmatrix\ACHProcessor;
 
-class COSDownloadProcessor
+class ACHDownloadProcessor
 {
     /**
      * @param array BeneficiaryAdapterInterface

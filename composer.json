@@ -20,7 +20,7 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "Simmatrix\\PaymentProcessor\\": "packages/simmatrix/laravel-payment-processor/src"
+            "Simmatrix\\ACHProcessor\\": "packages/simmatrix/laravel-ach-processor/src"
         }
     },
     "autoload-dev": {

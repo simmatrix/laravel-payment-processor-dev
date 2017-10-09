@@ -4,12 +4,13 @@ use Illuminate\Database\Eloquent\Model;
 
 use Models\TestUser;
 
-class TestPayment extends Model{
-
+class TestPayment extends Model
+{
 	protected $guarded = [];
     public $timestamps = false;
 
-    public function testUser(){
+    public function testUser()
+    {
         return $this -> belongsTo(TestUser::class);
     }
 }

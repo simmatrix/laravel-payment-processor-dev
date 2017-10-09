@@ -1,5 +1,5 @@
 <?php
-namespace Simmatrix\PaymentProcessor\Adapter\Result;
+namespace Simmatrix\ACHProcessor\Adapter\Result;
 
 abstract class ACHResultAdapterAbstract
 {

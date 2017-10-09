@@ -1,7 +1,7 @@
 <?php
 
-namespace Simmatrix\PaymentProcessor;
-use Simmatrix\PaymentProcessor\Stringable;
+namespace Simmatrix\ACHProcessor;
+use Simmatrix\ACHProcessor\Stringable;
 
 /**
  * A beneficiary object representing the payee

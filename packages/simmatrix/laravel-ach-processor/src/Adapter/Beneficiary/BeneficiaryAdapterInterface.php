@@ -1,5 +1,5 @@
 <?php
-namespace Simmatrix\PaymentProcessor\Adapter\Beneficiary;
+namespace Simmatrix\ACHProcessor\Adapter\Beneficiary;
 
 interface BeneficiaryAdapterInterface
 {

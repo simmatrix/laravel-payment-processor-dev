@@ -1,18 +1,18 @@
 <?php
 
-namespace Simmatrix\PaymentProcessor\Factory\UOB;
+namespace Simmatrix\ACHProcessor\Factory\UOB;
 
-use Simmatrix\PaymentProcessor\Line\Line;
-use Simmatrix\PaymentProcessor\Adapter\Beneficiary\BeneficiaryAdapterInterface;
-use Simmatrix\PaymentProcessor\BeneficiaryLine;
-use Simmatrix\PaymentProcessor\Column\DateColumn;
-use Simmatrix\PaymentProcessor\Factory\Column\ConfigurableStringColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\EmptyColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\LeftPaddedDecimalWithoutDelimiterColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\LeftPaddedZerofillStringColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\PresetStringColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\RightPaddedStringColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\VariableLengthStringColumnFactory;
+use Simmatrix\ACHProcessor\Line\Line;
+use Simmatrix\ACHProcessor\Adapter\Beneficiary\BeneficiaryAdapterInterface;
+use Simmatrix\ACHProcessor\BeneficiaryLine;
+use Simmatrix\ACHProcessor\Column\DateColumn;
+use Simmatrix\ACHProcessor\Factory\Column\ConfigurableStringColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\EmptyColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\LeftPaddedDecimalWithoutDelimiterColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\LeftPaddedZerofillStringColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\PresetStringColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\RightPaddedStringColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\VariableLengthStringColumnFactory;
 
 class UOBBeneficiaryFactory
 {

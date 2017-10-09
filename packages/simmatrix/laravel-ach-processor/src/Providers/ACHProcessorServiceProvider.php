@@ -1,10 +1,10 @@
 <?php
 
-namespace Simmatrix\PaymentProcessor\Providers;
+namespace Simmatrix\ACHProcessor\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class PaymentProcessorServiceProvider extends ServiceProvider
+class ACHProcessorServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -14,7 +14,7 @@ class PaymentProcessorServiceProvider extends ServiceProvider
     public function boot()
     {
         $this -> publishes([
-            __DIR__ . '/../../config/payment_processor.php' => base_path('config/payment_processor.php')
+            __DIR__ . '/../../config/ach_processor.php' => base_path('config/ach_processor.php')
         ]);
     }
 
@@ -25,6 +25,6 @@ class PaymentProcessorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this -> mergeConfigFrom( __DIR__ .'./../../config/payment_processor.php', 'bank_processor' );
+        $this -> mergeConfigFrom( __DIR__ .'./../../config/ach_processor.php', 'ach_processor' );
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace Simmatrix\PaymentProcessor\Line;
+namespace Simmatrix\ACHProcessor\Line;
 
-use Simmatrix\PaymentProcessor\Stringable;
-use Simmatrix\PaymentProcessor\BeneficiaryLine;
-use Simmatrix\PaymentProcessor\Adapter\Beneficiary\BeneficiaryAdapterInterface;
+use Simmatrix\ACHProcessor\Stringable;
+use Simmatrix\ACHProcessor\BeneficiaryLine;
+use Simmatrix\ACHProcessor\Adapter\Beneficiary\BeneficiaryAdapterInterface;
 
 abstract class Header extends Line implements Stringable
 {
@@ -29,7 +29,8 @@ abstract class Header extends Line implements Stringable
      * @param String The key to read the config from
      * @param String The payment description
      */
-    public function __construct( array $beneficiaries, string $config_key, string $payment_description ){
+    public function __construct( array $beneficiaries, string $config_key, string $payment_description )
+    {
         $this -> beneficiaries = $beneficiaries;
         $this -> paymentDescription = $payment_description;
         parent::__construct($config_key);
@@ -48,7 +49,8 @@ abstract class Header extends Line implements Stringable
      * Get the total number of beneficiaries
      * @return int
      */
-    public function getBeneficiaryCount(){
+    public function getBeneficiaryCount()
+    {
         return count($this -> beneficiaries);
     }
 
@@ -56,21 +58,24 @@ abstract class Header extends Line implements Stringable
      * Get the number of lines that make up a BeneficiaryLine entry.
      * @return int
      */
-    public function getBeneficiaryLineHeight(){
+    public function getBeneficiaryLineHeight()
+    {
         return $this -> beneficiaryLineHeight;
     }
 
     /**
      * @return String
      */
-    public function getString(){
+    public function getString()
+    {
         $line = $this -> getLine();
         return $line -> getString();
     }
     /**
      * @return int
      */
-    public function getTotalLines(){
+    public function getTotalLines()
+    {
         //assumes
         return $this -> fileHeaderHeight
         + $this -> batchHeaderHeight
@@ -80,9 +85,9 @@ abstract class Header extends Line implements Stringable
     /**
      * @return float
      */
-    public function getTotalPaymentAmount(){
+    public function getTotalPaymentAmount()
+    {
         return (float)collect($this -> beneficiaries) -> reduce( function($carry,  BeneficiaryAdapterInterface $beneficiary){
-
             return $carry += $beneficiary -> getPaymentAmount();
         }, 0);
     }

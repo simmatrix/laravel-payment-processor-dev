@@ -1,8 +1,8 @@
 <?php
 
-namespace Simmatrix\PaymentProcessor\Factory\Column;
+namespace Simmatrix\ACHProcessor\Factory\Column;
 
-use Simmatrix\PaymentProcessor\Column\Column;
+use Simmatrix\ACHProcessor\Column\Column;
 
 class LeftPaddedZerofillStringColumnFactory
 {

@@ -1,18 +1,18 @@
 <?php
 
-namespace Simmatrix\PaymentProcessor\Factory\UOB\Header;
+namespace Simmatrix\ACHProcessor\Factory\UOB\Header;
 
-use Simmatrix\PaymentProcessor\Line\Line;
-use Simmatrix\PaymentProcessor\Line\Header;
-use Simmatrix\PaymentProcessor\Beneficiary;
-use Simmatrix\PaymentProcessor\BeneficiaryLine;
-use Simmatrix\PaymentProcessor\Column\Date;
-use Simmatrix\PaymentProcessor\Factory\Column\ConfigurableStringColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\EmptyColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\LeftPaddedDecimalWithoutDelimiterColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\PresetStringColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\RightPaddedStringColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\VariableLengthStringColumnFactory;
+use Simmatrix\ACHProcessor\Line\Line;
+use Simmatrix\ACHProcessor\Line\Header;
+use Simmatrix\ACHProcessor\Beneficiary;
+use Simmatrix\ACHProcessor\BeneficiaryLine;
+use Simmatrix\ACHProcessor\Column\Date;
+use Simmatrix\ACHProcessor\Factory\Column\ConfigurableStringColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\EmptyColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\LeftPaddedDecimalWithoutDelimiterColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\PresetStringColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\RightPaddedStringColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\VariableLengthStringColumnFactory;
 
 
 class UOBBatchHeader extends Header

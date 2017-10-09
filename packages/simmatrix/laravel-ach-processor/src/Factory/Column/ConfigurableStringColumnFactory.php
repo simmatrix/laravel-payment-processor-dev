@@ -1,10 +1,10 @@
 <?php
 
-namespace Simmatrix\PaymentProcessor\Factory\Column;
+namespace Simmatrix\ACHProcessor\Factory\Column;
 
-use Simmatrix\PaymentProcessor\Exceptions\PaymentProcessorColumnException;
-use Simmatrix\PaymentProcessor\Column\Column;
-use Simmatrix\PaymentProcessor\Line\Line;
+use Simmatrix\ACHProcessor\Exceptions\ACHProcessorColumnException;
+use Simmatrix\ACHProcessor\Column\Column;
+use Simmatrix\ACHProcessor\Line\Line;
 use Config;
 
 class ConfigurableStringColumnFactory
@@ -24,7 +24,7 @@ class ConfigurableStringColumnFactory
     public static function create($config, $config_key, $label = '', $default_value = '', $max_length = NULL, $auto_trim = TRUE)
     {
         if( !$config -> has($config_key)){
-            throw new PaymentProcessorColumnException('Could not find the config option ' . $config_key);
+            throw new ACHProcessorColumnException('Could not find the config option ' . $config_key);
         }
 
         $value = (string)$config -> get($config_key);

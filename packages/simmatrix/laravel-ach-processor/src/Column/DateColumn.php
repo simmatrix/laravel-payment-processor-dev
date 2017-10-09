@@ -1,7 +1,7 @@
 <?php
-namespace Simmatrix\PaymentProcessor\Column;
+namespace Simmatrix\ACHProcessor\Column;
 
-use Simmatrix\PaymentProcessor\Stringable;
+use Simmatrix\ACHProcessor\Stringable;
 
 class DateColumn extends Column implements Stringable
 {

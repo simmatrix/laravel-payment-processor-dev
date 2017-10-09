@@ -1,9 +1,9 @@
 <?php
 
-namespace Simmatrix\PaymentProcessor\Adapter\Result\HSBC;
+namespace Simmatrix\ACHProcessor\Adapter\Result\HSBC;
 
-use Simmatrix\PaymentProcessor\Adapter\Result\ACHResultAdapterAbstract;
-use Simmatrix\PaymentProcessor\Result\ACHResult;
+use Simmatrix\ACHProcessor\Adapter\Result\ACHResultAdapterAbstract;
+use Simmatrix\ACHProcessor\Result\ACHResult;
 
 class HsbcAchResultAdapter extends ACHResultAdapterAbstract
 {

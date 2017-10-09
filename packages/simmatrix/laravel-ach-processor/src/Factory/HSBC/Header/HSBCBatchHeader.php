@@ -1,22 +1,22 @@
 <?php
 
-namespace Simmatrix\PaymentProcessor\Factory\HSBC\Header;
+namespace Simmatrix\ACHProcessor\Factory\HSBC\Header;
 
-use Simmatrix\PaymentProcessor\Line\Line;
-use Simmatrix\PaymentProcessor\Stringable;
-use Simmatrix\PaymentProcessor\Beneficiary;
-use Simmatrix\PaymentProcessor\BeneficiaryLine;
-use Simmatrix\PaymentProcessor\Column\Date;
-use Simmatrix\PaymentProcessor\Factory\Column\ConfigurableStringColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\EmptyColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\LeftPaddedDecimalWithoutDelimiterColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\LeftPaddedZerofillStringColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\PresetStringColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\RightPaddedStringColumnFactory;
-use Simmatrix\PaymentProcessor\Factory\Column\VariableLengthStringColumnFactory;
+use Simmatrix\ACHProcessor\Line\Line;
+use Simmatrix\ACHProcessor\Stringable;
+use Simmatrix\ACHProcessor\Beneficiary;
+use Simmatrix\ACHProcessor\BeneficiaryLine;
+use Simmatrix\ACHProcessor\Column\Date;
+use Simmatrix\ACHProcessor\Factory\Column\ConfigurableStringColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\EmptyColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\LeftPaddedDecimalWithoutDelimiterColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\LeftPaddedZerofillStringColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\PresetStringColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\RightPaddedStringColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\VariableLengthStringColumnFactory;
 
 
-class HSBCBatchHeader extends \Simmatrix\PaymentProcessor\Line\Header implements Stringable
+class HSBCBatchHeader extends \Simmatrix\ACHProcessor\Line\Header implements Stringable
 {
     const FIRST_PARTY_RECORD_TYPE = 1; // 1 stands for first party
     const COUNTRY_CODE = 'MY';

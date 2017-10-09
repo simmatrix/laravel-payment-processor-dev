@@ -145,7 +145,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Simmatrix\PaymentProcessor\Providers\PaymentProcessorServiceProvider,
+        // Simmatrix\ACHProcessor\Providers\ACHProcessorServiceProvider,
 
     ],
 

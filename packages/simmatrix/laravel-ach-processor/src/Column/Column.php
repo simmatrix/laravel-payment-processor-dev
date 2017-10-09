@@ -1,8 +1,8 @@
 <?php
-namespace Simmatrix\PaymentProcessor\Column;
+namespace Simmatrix\ACHProcessor\Column;
 
-use Simmatrix\PaymentProcessor\Stringable;
-use Simmatrix\PaymentProcessor\Exceptions\PaymentProcessorColumnException;
+use Simmatrix\ACHProcessor\Stringable;
+use Simmatrix\ACHProcessor\Exceptions\ACHProcessorColumnException;
 
 class Column implements Stringable
 {
@@ -56,7 +56,7 @@ class Column implements Stringable
     public function getPaddedValue( $value )
     {
         if( $this -> fixedLength == null && $this -> paddingType !== self::PADDING_NONE ) {
-            throw new PaymentProcessorColumnException(sprintf("Padding %s was set for the column %s, but no fixedLength was set.", $this -> paddingType, __CLASS__));
+            throw new ACHProcessorColumnException(sprintf("Padding %s was set for the column %s, but no fixedLength was set.", $this -> paddingType, __CLASS__));
         }
         switch($this -> paddingType) {
             case self::PADDING_ZEROFILL_LEFT:
@@ -153,8 +153,8 @@ class Column implements Stringable
         $padding_types = [self::PADDING_NONE, self::PADDING_ZEROFILL_LEFT, self::PADDING_RIGHT];
         if( !in_array($padding_type, $padding_types)){
             if( $this -> label )
-                throw new PaymentProcessorColumnException(sprintf('Invalid padding type for the column %s - choose from %s', $this -> label, implode(',', $padding_types)));
-            else throw new PaymentProcessorColumnException(sprintf('Invalid padding type - choose from %s', implode(',', $padding_types)));
+                throw new ACHProcessorColumnException(sprintf('Invalid padding type for the column %s - choose from %s', $this -> label, implode(',', $padding_types)));
+            else throw new ACHProcessorColumnException(sprintf('Invalid padding type - choose from %s', implode(',', $padding_types)));
         }
         $this -> paddingType = $padding_type;
     }
@@ -174,9 +174,9 @@ class Column implements Stringable
                 $value = substr( $value, 0, $this -> maxLength );
             } else {
                 if( $this -> label ) {
-                    throw new PaymentProcessorColumnException(sprintf("Invalid length for the column %s (%s) - the max length for %s was %d", $this -> label, (string)$value, __CLASS__, $max_length));
+                    throw new ACHProcessorColumnException(sprintf("Invalid length for the column %s (%s) - the max length for %s was %d", $this -> label, (string)$value, __CLASS__, $max_length));
                 } else {
-                    throw new PaymentProcessorColumnException(sprintf("Invalid length for %s - the max length for %s was %d", (string)$value, __CLASS__, $max_length));
+                    throw new ACHProcessorColumnException(sprintf("Invalid length for %s - the max length for %s was %d", (string)$value, __CLASS__, $max_length));
                 }
             }
 

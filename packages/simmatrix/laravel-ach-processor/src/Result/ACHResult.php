@@ -1,6 +1,6 @@
 <?php
 
-namespace Simmatrix\PaymentProcessor\Result;
+namespace Simmatrix\ACHProcessor\Result;
 
 class ACHResult
 {

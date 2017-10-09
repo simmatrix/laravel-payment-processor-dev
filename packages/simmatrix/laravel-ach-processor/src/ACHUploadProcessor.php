@@ -1,6 +1,6 @@
 <?php
 
-namespace Simmatrix\PaymentProcessor;
+namespace Simmatrix\ACHProcessor;
 
 class ACHUploadProcessor implements Stringable
 {
@@ -23,26 +23,35 @@ class ACHUploadProcessor implements Stringable
      * @var Array of BeneficiaryAbstract
      */
     protected $beneficiaries;
+
     /**
      * @var BeneficiaryLines
      */
     protected $beneficiaryLines;
 
     /**
-    * @var String
-    */
+     * @var String
+     */
     protected $identifier;
+
+    /**
+     * @var String
+     */
     protected $lineBreak = "\r\n";
+
+    /**
+     * @var String
+     */
     protected $columnDelimiter = ",";
 
     /**
-    * @var String
-    */
+     * @var String
+     */
     protected $fileName;
 
     /**
-    * @var String
-    */
+     * @var String
+     */
     protected $fileExtension;
 
     /**
@@ -58,7 +67,7 @@ class ACHUploadProcessor implements Stringable
      */
     public function addBeneficiary(BeneficiaryAdapterInterface $beneficiary)
     {
-        $this -> beneficiaries[]= $beneficiary;
+        $this -> beneficiaries[] = $beneficiary;
     }
 
     /**
@@ -77,17 +86,17 @@ class ACHUploadProcessor implements Stringable
         $line_outputs = [];
 
         if( $this -> fileHeader )
-            $line_outputs[]= $this -> fileHeader -> getString();
+            $line_outputs[] = $this -> fileHeader -> getString();
 
         if( $this -> batchHeader )
-            $line_outputs[]= $this -> batchHeader -> getString();
+            $line_outputs[] = $this -> batchHeader -> getString();
 
         foreach( $this -> beneficiaryLines as $beneficiary_line ){
-            $line_outputs[]= $beneficiary_line -> getString();
+            $line_outputs[] = $beneficiary_line -> getString();
         }
 
         if( $this -> batchTrailer )
-            $line_outputs[]= $this -> batchTrailer -> getString();
+            $line_outputs[] = $this -> batchTrailer -> getString();
 
         return implode($this -> lineBreak, $line_outputs);
     }
@@ -111,35 +120,40 @@ class ACHUploadProcessor implements Stringable
     /**
      * @param Array BeneficiaryAdapterInterface
      */
-    public function setBeneficiaries(array $beneficiaries){
+    public function setBeneficiaries(array $beneficiaries)
+    {
         $this -> beneficiaries = $beneficiaries;
     }
 
     /**
      * @param Array BeneficiaryLines
      */
-    public function setBeneficiaryLines(array $beneficiary_lines){
+    public function setBeneficiaryLines(array $beneficiary_lines)
+    {
         $this -> beneficiaryLines = $beneficiary_lines;
     }
 
     /**
      * @param String
      */
-    public function setColumnDelimiter($string){
+    public function setColumnDelimiter($string)
+    {
         $this -> columnDelimiter = $string;
     }
 
     /**
      * @param String
      */
-    public function setIdentifier($string){
+    public function setIdentifier($string)
+    {
         $this -> identifier = $string;
     }
 
     /**
      * @param String
      */
-    public function setLineBreak($string){
+    public function setLineBreak($string)
+    {
         $this -> lineBreak = $string;
     }
 
@@ -168,16 +182,16 @@ class ACHUploadProcessor implements Stringable
     }
 
     /**
-    * @return String
-    */
+     * @var String
+     */
     public function getFileName()
     {
         return $this -> fileName;
     }
 
     /**
-    * @return String
-    */
+     * @var String
+     */
     public function getFileExtension()
     {
         return $this -> fileExtension;

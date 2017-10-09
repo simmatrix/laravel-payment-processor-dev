@@ -1,7 +1,7 @@
 <?php
-namespace Simmatrix\PaymentProcessor\Adapter\Beneficiary;
+namespace Simmatrix\ACHProcessor\Adapter\Beneficiary;
 
-use Simmatrix\PaymentProcessor\Stringable;
+use Simmatrix\ACHProcessor\Stringable;
 
 abstract class BeneficiaryAdapterAbstract implements BeneficiaryAdapterInterface
 {
