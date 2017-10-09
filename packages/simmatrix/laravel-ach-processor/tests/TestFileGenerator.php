@@ -4,14 +4,15 @@ use Illuminate\FileSystem\Filesystem;
 use Illuminate\FileSystem\ClassFinder;
 use Models\TestPayment;
 use Adapter\MyBeneficiaryAdapter;
-use Simmatrix\PaymentProcessor\Factory\HSBC\HSBCCOSUploadProcessorFactory;
+use Simmatrix\PaymentProcessor\Factory\HSBC\HsbcAchUploadProcessorFactory;
 use Simmatrix\PaymentProcessor\Factory\UOB\UOBCOSUploadProcessorFactory;
 
-use Simmatrix\PaymentProcessor\Adapter\Result\HSBC\HSBCCOSResultAdapter;
+use Simmatrix\PaymentProcessor\Adapter\Result\HSBC\HsbcAchResultAdapter;
 
-class TestFileGenerator extends Orchestra\Testbench\TestCase{
-
-    public function setUp(){
+class TestFileGenerator extends Orchestra\Testbench\TestCase
+{
+    public function setUp()
+    {
         parent::setUp();
         $this->app['config']->set('database.default','sqlite');
         $this->app['config']->set('database.connections.sqlite.database', ':memory:');
@@ -48,14 +49,16 @@ class TestFileGenerator extends Orchestra\Testbench\TestCase{
         }
     }
 
-    public function testHSBCDownload(){
+    public function testHSBCDownload()
+    {
         //create an array of BeneficiaryAdapterInterface
         $beneficiaries = TestPayment::all();
-        $cos = HSBCCOSUploadProcessorFactory::create($beneficiaries, 'cos_processor.hsbc_example');
+        $cos = HsbcAchUploadProcessorFactory::create($beneficiaries, 'cos_processor.hsbc_example');
         echo $cos -> getString();
     }
 
-    public function testUOBDownload(){
+    public function testUOBDownload()
+    {
         //create an array of BeneficiaryAdapterInterface
         $beneficiaries = TestPayment::all();
 
@@ -71,16 +74,16 @@ class TestFileGenerator extends Orchestra\Testbench\TestCase{
 
     }
 
-    public function testHSBCUpload(){
-
+    public function testHSBCUpload()
+    {
         //the first line is the Header
         $handle = fopen( __DIR__ ."/ifile_result.csv", "r");
         $index = 0;
         $results = [];
         while (($line = fgets($handle)) !== false) {
             if( $index++ !== 0){
-                $adapter = new HSBCCOSResultAdapter($line);
-                $results[] = $adapter -> getCosResult();
+                $adapter = new HsbcAchResultAdapter($line);
+                $results[] = $adapter -> getAchResult();
             }
         }
         fclose($handle);

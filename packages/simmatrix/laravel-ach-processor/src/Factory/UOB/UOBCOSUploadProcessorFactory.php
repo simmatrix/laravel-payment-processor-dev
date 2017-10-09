@@ -18,7 +18,7 @@ class UOBCOSUploadProcessorFactory
      * @param Collection of entries to be passed into the adapter
      * @param String The config key to read from
      * @param Int The sequence number for file name generation. If multiple files are generated in a day, this number should be incremented.
-     * @return COSUploadProcessor
+     * @return ACHUploadProcessor
      */
     public static function create($beneficiaries, $config_key, $sequence_number = 1)
     {
@@ -33,7 +33,7 @@ class UOBCOSUploadProcessorFactory
             return UOBBeneficiaryFactory::create($beneficiary, $config_key);
         }) -> toArray();
 
-        $cos = new COSUploadProcessor($beneficiaries, $config_key);
+        $cos = new ACHUploadProcessor($beneficiaries, $config_key);
 
         $file_name = static::getFileName($sequence_number);
         $cos -> setFileName($file_name);

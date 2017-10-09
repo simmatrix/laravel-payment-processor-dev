@@ -2,10 +2,10 @@
 
 namespace Simmatrix\PaymentProcessor\Adapter\Result\HSBC;
 
-use Simmatrix\PaymentProcessor\Adapter\Result\COSResultAdapterAbstract;
-use Simmatrix\PaymentProcessor\Result\COSResult;
+use Simmatrix\PaymentProcessor\Adapter\Result\ACHResultAdapterAbstract;
+use Simmatrix\PaymentProcessor\Result\ACHResult;
 
-class HSBCCOSResultAdapter extends COSResultAdapterAbstract
+class HsbcAchResultAdapter extends ACHResultAdapterAbstract
 {
     const OFFSET_FILE_ID = 0;
     const OFFSET_PAYMENT_ID = 1;
@@ -26,8 +26,8 @@ class HSBCCOSResultAdapter extends COSResultAdapterAbstract
      */
     public function __construct($string){
         parent::__construct($string);
-        
-        $result = new COSResult();
+
+        $result = new ACHResult();
         $result -> setFileIdentifier( trim($this -> columns[self::OFFSET_FILE_ID]));
         $result -> setPaymentId( trim($this -> columns[self::OFFSET_PAYMENT_ID]));
         $result -> setTransactionId( trim($this -> columns[self::OFFSET_TRANSACTION_ID]));
@@ -38,7 +38,7 @@ class HSBCCOSResultAdapter extends COSResultAdapterAbstract
         $datetime = \DateTime::createFromFormat('d/m/y', trim($this -> columns[self::OFFSET_INSTRUMENT_DATE]));
         if( !$datetime )
             $datetime = \DateTime::createFromFormat('d/m/Y', trim($this -> columns[self::OFFSET_INSTRUMENT_DATE]));
-        $result -> setDateTime($datetime);        
+        $result -> setDateTime($datetime);
 
         $result -> setCurrency(trim($this -> columns[self::OFFSET_CURRENCY]));
         $result -> setAmount(trim($this -> columns[self::OFFSET_AMOUNT]));
@@ -47,7 +47,7 @@ class HSBCCOSResultAdapter extends COSResultAdapterAbstract
         $debit_date = \DateTime::createFromFormat('d/m/y', trim($this -> columns[self::OFFSET_DEBIT_DATE]));
         if( !$debit_date )
             $debit_date = \DateTime::createFromFormat('d/m/Y', trim($this -> columns[self::OFFSET_DEBIT_DATE]));
-        $result -> setDebitDate($debit_date);  
+        $result -> setDebitDate($debit_date);
 
         $result -> setStatus(trim($this -> columns[self::OFFSET_STATUS]));
 
@@ -55,12 +55,12 @@ class HSBCCOSResultAdapter extends COSResultAdapterAbstract
         $status_date = \DateTime::createFromFormat('d/m/y', trim($this -> columns[self::OFFSET_STATUS_DATE]));
         if( !$status_date )
             $status_date = \DateTime::createFromFormat('d/m/Y', trim($this -> columns[self::OFFSET_STATUS_DATE]));
-        $result -> setStatusDate($status_date);    
+        $result -> setStatusDate($status_date);
 
         $result -> setBeneficiaryId(trim($this -> columns[self::OFFSET_BENEFICIARY_ID]));
-        $result -> setFullname(trim($this -> columns[self::OFFSET_BENEFICIARY_NAME]));        
+        $result -> setFullname(trim($this -> columns[self::OFFSET_BENEFICIARY_NAME]));
 
-        $this -> cosResult = $result;
+        $this -> achResult = $result;
     }
 }
 ?>

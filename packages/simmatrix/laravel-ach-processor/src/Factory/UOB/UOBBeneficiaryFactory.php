@@ -14,7 +14,6 @@ use Simmatrix\PaymentProcessor\Factory\Column\PresetStringColumnFactory;
 use Simmatrix\PaymentProcessor\Factory\Column\RightPaddedStringColumnFactory;
 use Simmatrix\PaymentProcessor\Factory\Column\VariableLengthStringColumnFactory;
 
-
 class UOBBeneficiaryFactory
 {
     /**

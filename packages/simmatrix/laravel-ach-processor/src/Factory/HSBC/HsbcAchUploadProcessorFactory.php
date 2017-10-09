@@ -7,17 +7,17 @@ use Simmatrix\PaymentProcessor\Factory\HSBC\Header\HSBCBatchHeader;
 
 use Simmatrix\PaymentProcessor\Factory\HSBC\HSBCBeneficiaryFactory;
 use Simmatrix\PaymentProcessor\Adapter\Beneficiary\BeneficiaryAdapterInterface;
-use Simmatrix\PaymentProcessor\COSUploadProcessor;
+use Simmatrix\PaymentProcessor\ACHUploadProcessor;
 
 use Illuminate\Config\Repository;
 
-class HSBCCOSUploadProcessorFactory
+class HsbcAchUploadProcessorFactory
 {
     /**
      * @param Collection of entries to be passed into the adapter
      * @param String The key to read the config from
      * @param String The payment description
-     * @return COSUploadProcessor
+     * @return ACHUploadProcessor
      */
     public static function create($beneficiaries, $config_key, $payment_description)
     {
@@ -32,17 +32,14 @@ class HSBCCOSUploadProcessorFactory
             return HSBCBeneficiaryFactory::create($beneficiary, $config_key);
         }) -> toArray();
 
-        $cos = new COSUploadProcessor($beneficiaries);
-
-        $file_header = new HSBCFileHeader($beneficiaries, $config_key);
+        $ach = new ACHUploadProcessor($beneficiaries);
         $batch_header = new HSBCBatchHeader($beneficiaries, $config_key, $payment_description);
 
-        $cos -> setFileHeader($file_header);
-        $cos -> setBatchHeader($batch_header);
-        $cos -> setBeneficiaryLines($beneficiary_lines);
-        $cos -> setIdentifier($file_header -> getFileReference());
-        $cos -> setFileName('hsbc_cos_'.time());
-        $cos -> setFileExtension('csv');
-        return $cos;
+        $ach -> setBatchHeader($batch_header);
+        $ach -> setBeneficiaryLines($beneficiary_lines);
+        $ach -> setIdentifier($file_header -> getFileReference());
+        $ach -> setFileName('hsbc_ach_'.time());
+        $ach -> setFileExtension('csv');
+        return $ach;
     }
 }

@@ -2,10 +2,10 @@
 
 namespace Simmatrix\PaymentProcessor;
 
-class COSUploadProcessor implements Stringable
+class ACHUploadProcessor implements Stringable
 {
     /**
-     * @var Header
+     * @var Header (optional)
      */
     protected $fileHeader;
 
@@ -35,12 +35,12 @@ class COSUploadProcessor implements Stringable
     protected $lineBreak = "\r\n";
     protected $columnDelimiter = ",";
 
-    /** 
+    /**
     * @var String
     */
     protected $fileName;
 
-    /** 
+    /**
     * @var String
     */
     protected $fileExtension;
@@ -48,28 +48,32 @@ class COSUploadProcessor implements Stringable
     /**
      * @param array BeneficiaryAdapterInterface
      */
-    public function __construct($beneficiaries){
+    public function __construct($beneficiaries)
+    {
         $this -> beneficiaries = $beneficiaries;
     }
 
     /**
      * @param BeneficiaryAdapterInterface
      */
-    public function addBeneficiary(BeneficiaryAdapterInterface $beneficiary){
+    public function addBeneficiary(BeneficiaryAdapterInterface $beneficiary)
+    {
         $this -> beneficiaries[]= $beneficiary;
     }
 
     /**
-    * @return String An identifier for the batch that was generated. 
-    */    
-    public function getIdentifier(){
+    * @return String An identifier for the batch that was generated.
+    */
+    public function getIdentifier()
+    {
         return $this -> identifier;
-    }   
+    }
 
     /**
      * @return String
      */
-    public function getString(){
+    public function getString()
+    {
         $line_outputs = [];
 
         if( $this -> fileHeader )
@@ -84,6 +88,7 @@ class COSUploadProcessor implements Stringable
 
         if( $this -> batchTrailer )
             $line_outputs[]= $this -> batchTrailer -> getString();
+
         return implode($this -> lineBreak, $line_outputs);
     }
 
@@ -165,14 +170,16 @@ class COSUploadProcessor implements Stringable
     /**
     * @return String
     */
-    public function getFileName(){
+    public function getFileName()
+    {
         return $this -> fileName;
     }
 
     /**
     * @return String
     */
-    public function getFileExtension(){
+    public function getFileExtension()
+    {
         return $this -> fileExtension;
     }
 

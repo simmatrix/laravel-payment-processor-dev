@@ -1,12 +1,12 @@
 <?php
 namespace Simmatrix\PaymentProcessor\Adapter\Result;
 
-abstract class COSResultAdapterAbstract
+abstract class ACHResultAdapterAbstract
 {
     /**
      * @var COSResult
      */
-    protected $cosResult;
+    protected $achResult;
 
     /**
      * @var String
@@ -28,7 +28,7 @@ abstract class COSResultAdapterAbstract
     /**
      * @return COSResult
      */
-    public function getCosResult(){
-        return $this -> cosResult;
+    public function getAchResult(){
+        return $this -> achResult;
     }
 }

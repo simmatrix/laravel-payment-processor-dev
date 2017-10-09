@@ -2,7 +2,7 @@
 
 namespace Simmatrix\PaymentProcessor\Result;
 
-class PaymentResult
+class ACHResult
 {
     /**
      * @var float The amount of payment
