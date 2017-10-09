@@ -35,6 +35,11 @@ class Column implements Stringable
     protected $maxLength = null;
 
     /**
+     * @var boolean A flag whether to chop off extra characters automatically without throwing errors
+     */
+    protected $autoTrim = FALSE;
+
+    /**
      * @var String An optional label that is used for error messages.
      */
     protected $label = null;
@@ -79,7 +84,7 @@ class Column implements Stringable
     public function getString()
     {
         $value = null;
-        if( $this -> value === null ) {
+        if( $this -> value === null || strlen($this -> value) == 0 ) {
             if( $this -> defaultValue !== null ) {
                 $value = $this -> defaultValue;
             }
@@ -107,6 +112,16 @@ class Column implements Stringable
     public function setMaxLength( $length = 0 )
     {
         $this -> maxLength = $length;
+    }
+
+    /**
+     * Set to auto trim off extra characters if it exceeds the maximum character length
+     * @param int
+     * @return void
+     */
+    public function setAutoTrim( $auto_trim = TRUE )
+    {
+        $this -> autoTrim = $auto_trim;
     }
 
     /**
@@ -154,9 +169,17 @@ class Column implements Stringable
         // Set the max length to either maxLength (1st priority) or fixedLength (2nd priority)
         $max_length = ($this -> maxLength) ? $this -> maxLength : ($this -> fixedLength ? $this -> fixedLength : null );
         if( $max_length !== null && strlen((string)$value) > $max_length ){
-            if( $this -> label )
-                throw new PaymentProcessorColumnException(sprintf("Invalid length for the column %s (%s) - the max length for %s was %d", $this -> label, (string)$value, __CLASS__, $max_length));
-            else throw new PaymentProcessorColumnException(sprintf("Invalid length for %s - the max length for %s was %d", (string)$value, __CLASS__, $max_length));
+
+            if ( $this -> autoTrim ) {
+                $value = substr( $value, 0, $this -> maxLength );
+            } else {
+                if( $this -> label ) {
+                    throw new PaymentProcessorColumnException(sprintf("Invalid length for the column %s (%s) - the max length for %s was %d", $this -> label, (string)$value, __CLASS__, $max_length));
+                } else {
+                    throw new PaymentProcessorColumnException(sprintf("Invalid length for %s - the max length for %s was %d", (string)$value, __CLASS__, $max_length));
+                }
+            }
+
         }
         $this -> value = $value;
     }

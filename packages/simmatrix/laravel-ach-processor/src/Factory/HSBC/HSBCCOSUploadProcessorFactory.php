@@ -16,9 +16,10 @@ class HSBCCOSUploadProcessorFactory
     /**
      * @param Collection of entries to be passed into the adapter
      * @param String The key to read the config from
+     * @param String The payment description
      * @return COSUploadProcessor
      */
-    public static function create($beneficiaries, $config_key)
+    public static function create($beneficiaries, $config_key, $payment_description)
     {
         $config = new Repository(config($config_key));
         $adapter_class = $config['beneficiary_adapter'];
@@ -34,7 +35,7 @@ class HSBCCOSUploadProcessorFactory
         $cos = new COSUploadProcessor($beneficiaries);
 
         $file_header = new HSBCFileHeader($beneficiaries, $config_key);
-        $batch_header = new HSBCBatchHeader($beneficiaries, $config_key);
+        $batch_header = new HSBCBatchHeader($beneficiaries, $config_key, $payment_description);
 
         $cos -> setFileHeader($file_header);
         $cos -> setBatchHeader($batch_header);

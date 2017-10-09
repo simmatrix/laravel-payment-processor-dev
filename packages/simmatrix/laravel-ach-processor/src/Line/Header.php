@@ -13,12 +13,13 @@ abstract class Header extends Line implements Stringable
      */
     protected $beneficiaries;
 
+    /**
+     * @var String The payment description
+     */
+    protected $paymentDescription;
+
     protected $batchHeaderHeight = 1;
 
-    /**
-     * How many lines make up a beneficiary entry
-     * @var int
-     */
     protected $beneficiaryLineHeight = 1;
 
     protected $fileHeaderHeight = 1;
@@ -26,13 +27,25 @@ abstract class Header extends Line implements Stringable
     /**
      * @param Array of BeneficiaryAdapterInterface
      * @param String The key to read the config from
+     * @param String The payment description
      */
-    public function __construct( array $beneficiaries, $config_key){
+    public function __construct( array $beneficiaries, string $config_key, string $payment_description ){
         $this -> beneficiaries = $beneficiaries;
+        $this -> paymentDescription = $payment_description;
         parent::__construct($config_key);
     }
 
     /**
+     * Get the payment description
+     * @return String
+     */
+    public function getPaymentDescription()
+    {
+        return $this -> paymentDescription;
+    }
+
+    /**
+     * Get the total number of beneficiaries
      * @return int
      */
     public function getBeneficiaryCount(){
