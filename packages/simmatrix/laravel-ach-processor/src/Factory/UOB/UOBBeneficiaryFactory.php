@@ -4,7 +4,7 @@ namespace Simmatrix\PaymentProcessor\Factory\UOB;
 
 use Simmatrix\PaymentProcessor\Line\Line;
 use Simmatrix\PaymentProcessor\Adapter\Beneficiary\BeneficiaryAdapterInterface;
-use Simmatrix\PaymentProcessor\BeneficiaryLines;
+use Simmatrix\PaymentProcessor\BeneficiaryLine;
 use Simmatrix\PaymentProcessor\Column\DateColumn;
 use Simmatrix\PaymentProcessor\Factory\Column\ConfigurableStringColumnFactory;
 use Simmatrix\PaymentProcessor\Factory\Column\EmptyColumnFactory;
@@ -24,10 +24,10 @@ class UOBBeneficiaryFactory
     /**
      * @param Model
      * @param String the key to read the configuration from
-     * @return BeneficiaryLines
+     * @return BeneficiaryLine
      */
     public static function create($beneficiary, $config_key){
-        $beneficiary_lines = new BeneficiaryLines($beneficiary);
+        $beneficiary_lines = new BeneficiaryLine($beneficiary);
         $beneficiary_lines -> addLine(static::cashiersOrderFormatPaymentInstructionLine($beneficiary, $config_key));
         return $beneficiary_lines;
     }

@@ -2,7 +2,7 @@
 
 namespace Simmatrix\PaymentProcessor\Result;
 
-class COSResult
+class PaymentResult
 {
     /**
      * @var float The amount of payment
@@ -23,7 +23,7 @@ class COSResult
      * @var DateTime The instrument date
      */
     protected $dateTime;
-    
+
     /**
      * @var DateTime The debit date
      */
@@ -134,7 +134,7 @@ class COSResult
      */
     public function setInstrumentType( $instrument_type ){
         $this -> instrumentType = $instrument_type;
-    } 
+    }
 
     /**
      * @param int
@@ -168,6 +168,6 @@ class COSResult
         if( property_exists( $this, $property )){
             return $this -> $property;
         }
-    }   
+    }
 }
 ?>

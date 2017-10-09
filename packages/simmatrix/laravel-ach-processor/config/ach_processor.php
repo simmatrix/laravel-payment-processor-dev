@@ -32,12 +32,18 @@ return [
 
             'beneficiary_adapter' => \Simmatrix\ACHProcessor\Adapter\ExampleBeneficiaryAdapter::class,
 
-            // Batch Header Record
+            // [COMPULSORY] Batch Header Record
+            'first_party_account_branch' => 123,        // maximum length: 3 - ** Please define this yourself **
+            'first_party_account_serial' => 123456,     // maximum length: 6 - ** Please define this yourself **
+            'first_party_account_suffix' => 001,        // maximum length: 3 - ** Please define this yourself **
+            'payment_set_number' => 'C01',              // maximum length: 3 - ** Please define this yourself **
+
+            // [OPTIONAL] Batch Header Record
             'country_code' => 'MY',                     // maximum length: 2
-            'first_party_account_branch' => 123,        // maximum length: 3
-            'first_party_account_serial' => 123456,     // maximum length: 6
-            'first_party_account_suffix' => 001,        // maximum length: 3
-            'payment_set_number' => 'C01',              // maximum length: 3
+            'group_member' => 'HSBC',                   // maximum length: 4
+            'payment_type' => 'APO',                    // maximum length: 3  - APO stands for Auto Pay Out (Debit 1st party, Credit 2nd party)
+            'hexagon_customer_id' => '',                // maximum length: 12 - For E-Billing Solutions Payment only, else, leave this blank
+            'hexagon_account_id' => '',                 // maximum length: 4  - For E-Billing Solutions Payment only, else, leave this blank
 
             // Data Record
             'autopay_currency' => 'MYR',                // maximum length: 3

@@ -6,7 +6,7 @@ use Simmatrix\PaymentProcessor\Line\Line;
 use Simmatrix\PaymentProcessor\Line\Header;
 use Simmatrix\PaymentProcessor\Factory\UOB\UOBBeneficiaryFactory;
 use Simmatrix\PaymentProcessor\Beneficiary;
-use Simmatrix\PaymentProcessor\BeneficiaryLines;
+use Simmatrix\PaymentProcessor\BeneficiaryLine;
 use Simmatrix\PaymentProcessor\Column\Date;
 use Simmatrix\PaymentProcessor\Factory\Column\ConfigurableStringColumnFactory;
 use Simmatrix\PaymentProcessor\Factory\Column\EmptyColumnFactory;

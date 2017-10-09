@@ -3,7 +3,7 @@
 namespace Simmatrix\PaymentProcessor\Line;
 
 use Simmatrix\PaymentProcessor\Stringable;
-use Simmatrix\PaymentProcessor\BeneficiaryLines;
+use Simmatrix\PaymentProcessor\BeneficiaryLine;
 use Simmatrix\PaymentProcessor\Adapter\Beneficiary\BeneficiaryAdapterInterface;
 
 abstract class Header extends Line implements Stringable
@@ -53,7 +53,7 @@ abstract class Header extends Line implements Stringable
     }
 
     /**
-     * Get the number of lines that make up a BeneficiaryLines entry.
+     * Get the number of lines that make up a BeneficiaryLine entry.
      * @return int
      */
     public function getBeneficiaryLineHeight(){
