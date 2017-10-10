@@ -14,8 +14,6 @@ class FileGeneratorTest extends Orchestra\Testbench\TestCase
 {
     public function setUp()
     {
-        require __DIR__.'/bootstrap.php';
-
         parent::setUp();
         $this->app['config']->set('database.default','sqlite');
         $this->app['config']->set('database.connections.sqlite.database', ':memory:');
@@ -71,6 +69,9 @@ class FileGeneratorTest extends Orchestra\Testbench\TestCase
         echo $ach -> getString();
     }
 
+    /**
+     * @TODO
+     */
     public function xtestUOBDownload()
     {
         // Create an array of BeneficiaryAdapterInterface
@@ -88,6 +89,9 @@ class FileGeneratorTest extends Orchestra\Testbench\TestCase
         }
     }
 
+    /**
+     * @TODO
+     */
     public function xtestHSBCUpload()
     {
         //the first line is the Header
