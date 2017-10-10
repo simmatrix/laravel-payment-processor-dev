@@ -1,10 +1,10 @@
 <?php
 namespace Adapter;
 
-use Simmatrix\PaymentProcessor\Stringable;
-use Simmatrix\PaymentProcessor\Exceptions\ACHProcessorColumnException;
-use Simmatrix\PaymentProcessor\Adapter\Beneficiary\BeneficiaryAdapterAbstract;
-use Simmatrix\PaymentProcessor\Adapter\Beneficiary\BeneficiaryAdapterInterface;
+use Simmatrix\ACHProcessor\Stringable;
+use Simmatrix\ACHProcessor\Exceptions\ACHProcessorColumnException;
+use Simmatrix\ACHProcessor\Adapter\Beneficiary\BeneficiaryAdapterAbstract;
+use Simmatrix\ACHProcessor\Adapter\Beneficiary\BeneficiaryAdapterInterface;
 
 class MyBeneficiaryAdapter extends BeneficiaryAdapterAbstract implements BeneficiaryAdapterInterface
 {

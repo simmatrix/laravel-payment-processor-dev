@@ -24,7 +24,7 @@ class Line implements Stringable
     /**
      * @var String
      */
-    protected $columnDelimiter = ",";
+    protected $columnDelimiter = "";
 
     /**
      * @param String The key to read the config from

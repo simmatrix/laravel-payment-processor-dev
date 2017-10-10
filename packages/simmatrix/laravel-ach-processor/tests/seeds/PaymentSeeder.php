@@ -21,8 +21,8 @@ class PaymentSeeder extends Seeder
         while($i++ < 10 ){
             $user_seeds[]= [
                 'fullname' => $faker -> firstname() . ' ' . $faker -> firstName() . ' ' . $faker -> lastName(),
-                'account_number' => $faker -> randomNumber(20),
-                'ic_number' => $faker -> randomNumber(12),
+                'account_number' => $this -> randomNumber(20),
+                'ic_number' => $this -> randomNumber(12),
             ];
         }
 
@@ -37,5 +37,15 @@ class PaymentSeeder extends Seeder
             ]);
         }
 
+    }
+
+    public function randomNumber($length) {
+        $result = '';
+
+        for($i = 0; $i < $length; $i++) {
+            $result .= mt_rand(0, 9);
+        }
+
+        return $result;
     }
 }

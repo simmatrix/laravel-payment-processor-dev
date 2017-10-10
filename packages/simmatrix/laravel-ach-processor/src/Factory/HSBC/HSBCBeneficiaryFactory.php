@@ -50,19 +50,19 @@ class HSBCBeneficiaryFactory
 
         $columns = [
             'record_type'                       => PresetStringColumnFactory::create(SELF::SECOND_PARTY_RECORD_TYPE, $label = 'record_type'),
-            'second_party_id'                   => RightPaddedStringColumnFactory::create($this -> getUserId(), $length = 12, $label = 'second_party_id'),
+            'second_party_id'                   => RightPaddedStringColumnFactory::create($beneficiary -> getUserId(), $length = 12, $label = 'second_party_id'),
             'maintenance_code'                  => PresetStringColumnFactory::create(SELF::MAINTENANCE_CODE, $label = 'maintenance_code'),
             'autopay_currency'                  => ConfigurableStringColumnFactory::create($config = $line -> config, $config_key = 'autopay_currency', $label = 'autopay_currency', $default_value = SELF::AUTOPAY_CURRENCY, $max_length = 3),
-            'payment_amount'                    => LeftPaddedZerofillStringColumnFactory::create(number_format($this -> getPaymentAmount(), 2), $max_length = 16, $label = 'payment_amount'),
+            'payment_amount'                    => LeftPaddedZerofillStringColumnFactory::create(number_format($beneficiary -> getPaymentAmount(), 2, '.', ''), $max_length = 16, $label = 'payment_amount'),
             'payment_method'                    => RightPaddedStringColumnFactory::create(SELF::PAYMENT_METHOD, $length = 2, $label = 'payment_method'),
             'cheque_type'                       => RightPaddedStringColumnFactory::create(SELF::CHEQUE_TYPE, $length = 3, $label = 'cheque_type'),
             'payment_currency'                  => ConfigurableStringColumnFactory::create($config = $line -> config, $config_key = 'payment_currency', $label = 'payment_currency', $default_value = SELF::PAYMENT_CURRENCY, $max_length = 3),
             'corresponding_bank'                => RightPaddedStringColumnFactory::create(SELF::CORRESPONDING_BANK, $length = 4, $label = 'corresponding_bank'),
             'corresponding_branch'              => RightPaddedStringColumnFactory::create(SELF::CORRESPONDING_BRANCH, $length = 4, $label = 'corresponding_branch'),
-            'second_party_account_number'       => RightPaddedStringColumnFactory::create($this -> getAccountNumber(), $length = 20, $label = 'second_party_account_number'),
+            'second_party_account_number'       => RightPaddedStringColumnFactory::create($beneficiary -> getAccountNumber(), $length = 20, $label = 'second_party_account_number'),
             'next_payment_date'                 => RightPaddedStringColumnFactory::create(SELF::NEXT_PAYMENT_DATE, $length = 8, $label = 'next_payment_date'),
-            'second_party_description'          => RightPaddedStringColumnFactory::create($this -> getPayeeName(), $length = 20, $label = 'second_party_description'),
-            'second_party_reference'            => RightPaddedStringColumnFactory::create($this -> getSecondPartyReference(), $length = 12, $label = 'second_party_reference'),
+            'second_party_description'          => RightPaddedStringColumnFactory::create($beneficiary -> getPayeeName(), $length = 20, $label = 'second_party_description'),
+            'second_party_reference'            => RightPaddedStringColumnFactory::create($beneficiary -> getSecondPartyReference(), $length = 12, $label = 'second_party_reference'),
             'reserved'                          => RightPaddedStringColumnFactory::create(SELF::RESERVED, $length = 26, $label = 'reserved'),
         ];
 

@@ -1,6 +1,6 @@
 <?php
 
-use Simmatrix\PaymentProcessor\Factory\Column\LeftPaddedZerofillStringColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\LeftPaddedZerofillStringColumnFactory;
 
 class TestLeftPaddedZerofillStringColumnFactory extends Orchestra\Testbench\TestCase{
 

@@ -18,6 +18,7 @@ use Simmatrix\ACHProcessor\Factory\Column\VariableLengthStringColumnFactory;
 
 class HSBCBatchHeader extends \Simmatrix\ACHProcessor\Line\Header implements Stringable
 {
+    const FILE_REFERENCE_PREFIX = 'IFILEPYT_';
     const FIRST_PARTY_RECORD_TYPE = 1; // 1 stands for first party
     const COUNTRY_CODE = 'MY';
     const GROUP_MEMBER = 'HSBC';
@@ -45,7 +46,7 @@ class HSBCBatchHeader extends \Simmatrix\ACHProcessor\Line\Header implements Str
             'first_party_account_suffix'        => ConfigurableStringColumnFactory::create($config = $this -> config, $config_key = 'first_party_account_suffix', $label = 'first_party_account_suffix', $default_value = '', $max_length = 3),
             'payment_set_number'                => ConfigurableStringColumnFactory::create($config = $this -> config, $config_key = 'payment_set_number', $label = 'payment_set_number', $default_value = SELF::PAYMENT_SET_NUMBER, $max_length = 3),
             'batch_count_total'                 => LeftPaddedZerofillStringColumnFactory::create($this -> getBeneficiaryCount(), $max_length = 6, $label = 'batch_count_total'),
-            'batch_amount_hash_total'           => LeftPaddedZerofillStringColumnFactory::create(number_format($this -> getTotalPaymentAmount(), 2), $max_length = 17, $label = 'batch_amount_hash_total'),
+            'batch_amount_hash_total'           => LeftPaddedZerofillStringColumnFactory::create(number_format($this -> getTotalPaymentAmount(), 2, '.', ''), $max_length = 17, $label = 'batch_amount_hash_total'),
             'next_payment_date'                 => PresetStringColumnFactory::create(date('Ymd'), $label = 'next_payment_date'),
             'payment_type'                      => ConfigurableStringColumnFactory::create($config = $this -> config, $config_key = 'payment_type', $label = 'payment_type', $default_value = SELF::PAYMENT_TYPE, $max_length = 3),
             'payment_description'               => RightPaddedStringColumnFactory::create($this -> getPaymentDescription(), $length = 24, $label = 'payment_description'),

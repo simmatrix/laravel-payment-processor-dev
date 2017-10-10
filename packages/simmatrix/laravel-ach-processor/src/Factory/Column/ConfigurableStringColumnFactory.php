@@ -33,6 +33,7 @@ class ConfigurableStringColumnFactory
         $column -> setLabel($label);
         $column -> setValue($value);
         $column -> setMaxLength($max_length);
+        $column -> setFixedLength($max_length);
         $column -> setAutoTrim($auto_trim);
         $column -> setDefaultValue($default_value);
         $column -> setPaddingType(Column::PADDING_RIGHT);

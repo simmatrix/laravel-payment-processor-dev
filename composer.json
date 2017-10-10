@@ -9,10 +9,14 @@
         "laravel/framework": "5.1.*"
     },
     "require-dev": {
-        "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~4.0",
-        "phpspec/phpspec": "~2.1"
+        "phpspec/phpspec": "~2.1",
+        "squizlabs/php_codesniffer": "~2.3",
+        "phpunit/phpunit": "~4.0||~5.0",
+        "orchestra/testbench": "~3.0",
+        "illuminate/database": "~5.1",
+        "illuminate/filesystem": "~5.1",
+        "fzaninotto/faker": "^1.7"
     },
     "autoload": {
         "classmap": [
@@ -26,7 +30,11 @@
     "autoload-dev": {
         "classmap": [
             "tests/TestCase.php"
-        ]
+        ],
+        "psr-4": {
+            "App\\": "app/",
+            "Simmatrix\\ACHProcessor\\": "packages/simmatrix/laravel-ach-processor/src"
+        }
     },
     "scripts": {
         "post-root-package-install": [

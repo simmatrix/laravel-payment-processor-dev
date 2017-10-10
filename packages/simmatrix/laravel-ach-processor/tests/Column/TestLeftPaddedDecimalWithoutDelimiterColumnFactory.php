@@ -1,6 +1,6 @@
 <?php
 
-use Simmatrix\PaymentProcessor\Factory\Column\LeftPaddedDecimalWithoutDelimiterColumnFactory;
+use Simmatrix\ACHProcessor\Factory\Column\LeftPaddedDecimalWithoutDelimiterColumnFactory;
 
 class TestLeftPaddedDecimalWithoutDelimiterColumnFactory extends Orchestra\Testbench\TestCase{
 

@@ -2,9 +2,7 @@
 
 namespace Simmatrix\ACHProcessor\Factory\HSBC;
 
-use Simmatrix\ACHProcessor\Factory\HSBC\Header\HSBCFileHeader;
 use Simmatrix\ACHProcessor\Factory\HSBC\Header\HSBCBatchHeader;
-
 use Simmatrix\ACHProcessor\Factory\HSBC\HSBCBeneficiaryFactory;
 use Simmatrix\ACHProcessor\Adapter\Beneficiary\BeneficiaryAdapterInterface;
 use Simmatrix\ACHProcessor\ACHUploadProcessor;
@@ -37,7 +35,7 @@ class HsbcAchUploadProcessorFactory
 
         $ach -> setBatchHeader($batch_header);
         $ach -> setBeneficiaryLines($beneficiary_lines);
-        $ach -> setIdentifier($file_header -> getFileReference());
+        $ach -> setIdentifier($batch_header -> getFileReference());
         $ach -> setFileName('hsbc_ach_'.time());
         $ach -> setFileExtension('csv');
         return $ach;

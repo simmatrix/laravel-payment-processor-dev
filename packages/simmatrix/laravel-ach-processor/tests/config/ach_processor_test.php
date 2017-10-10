@@ -6,7 +6,7 @@ return [
 
         'company_a' => [
 
-            'beneficiary_adapter' => \Simmatrix\ACHProcessor\Adapter\ExampleBeneficiaryAdapter::class,
+            'beneficiary_adapter' => Adapter\MyBeneficiaryAdapter::class,
 
             // [COMPULSORY] Batch Header Record
             'first_party_account_branch' => 123,        // maximum length: 3 - ** Please define this yourself **
@@ -30,7 +30,7 @@ return [
         // If you have a subsidiary company, you can copy the structure of the key above
         'company_b' => [
 
-            'beneficiary_adapter' => \Simmatrix\ACHProcessor\Adapter\ExampleBeneficiaryAdapter::class,
+            'beneficiary_adapter' => Adapter\MyBeneficiaryAdapter::class,
 
             // [COMPULSORY] Batch Header Record
             'first_party_account_branch' => 123,        // maximum length: 3 - ** Please define this yourself **
@@ -57,13 +57,13 @@ return [
 
         'company_a' => [
 
-            'beneficiary_adapter' => \Simmatrix\ACHProcessor\Adapter\ExampleBeneficiaryAdapter::class,
+            'beneficiary_adapter' => Adapter\MyBeneficiaryAdapter::class,
 
         ],
 
         'company_b' => [
 
-            'beneficiary_adapter' => \Simmatrix\ACHProcessor\Adapter\ExampleBeneficiaryAdapter::class,
+            'beneficiary_adapter' => Adapter\MyBeneficiaryAdapter::class,
 
         ],
 

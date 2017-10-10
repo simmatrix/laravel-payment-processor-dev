@@ -13,12 +13,13 @@ class RightPaddedStringColumnFactory
      * @param String An optional label for the column, used in error messages.
      * @return Column
      */
-    public static function create($value, $length, $label = ''){
+    public static function create($value, $length, $label = '', $auto_trim = TRUE){
         $value = (string)$value;
         $column = new Column();
         $column -> setFixedLength($length);
         $column -> setLabel($label);
         $column -> setValue($value);
+        $column -> setAutoTrim($auto_trim);
         $column -> setPaddingType(Column::PADDING_RIGHT);
         return $column;
     }

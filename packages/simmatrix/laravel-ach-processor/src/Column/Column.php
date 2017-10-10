@@ -170,15 +170,7 @@ class Column implements Stringable
         $max_length = ($this -> maxLength) ? $this -> maxLength : ($this -> fixedLength ? $this -> fixedLength : null );
         if( $max_length !== null && strlen((string)$value) > $max_length ){
 
-            if ( $this -> autoTrim ) {
-                $value = substr( $value, 0, $this -> maxLength );
-            } else {
-                if( $this -> label ) {
-                    throw new ACHProcessorColumnException(sprintf("Invalid length for the column %s (%s) - the max length for %s was %d", $this -> label, (string)$value, __CLASS__, $max_length));
-                } else {
-                    throw new ACHProcessorColumnException(sprintf("Invalid length for %s - the max length for %s was %d", (string)$value, __CLASS__, $max_length));
-                }
-            }
+            $value = substr( $value, 0, $max_length );
 
         }
         $this -> value = $value;

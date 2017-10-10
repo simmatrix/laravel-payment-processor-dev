@@ -5,21 +5,34 @@ use Illuminate\FileSystem\ClassFinder;
 use Models\TestPayment;
 use Adapter\MyBeneficiaryAdapter;
 
-use Simmatrix\PaymentProcessor\Factory\HSBC\HsbcAchUploadProcessorFactory;
-use Simmatrix\PaymentProcessor\Factory\UOB\UobAchUploadProcessorFactory;
+use Simmatrix\ACHProcessor\Factory\HSBC\HsbcAchUploadProcessorFactory;
+use Simmatrix\ACHProcessor\Factory\UOB\UobAchUploadProcessorFactory;
 
-use Simmatrix\PaymentProcessor\Adapter\Result\HSBC\HsbcAchResultAdapter;
+use Simmatrix\ACHProcessor\Adapter\Result\HSBC\HsbcAchResultAdapter;
 
-class TestFileGenerator extends Orchestra\Testbench\TestCase
+class FileGeneratorTest extends Orchestra\Testbench\TestCase
 {
     public function setUp()
     {
+        require __DIR__.'/bootstrap.php';
+
         parent::setUp();
         $this->app['config']->set('database.default','sqlite');
         $this->app['config']->set('database.connections.sqlite.database', ':memory:');
         //read from the tests/config file.
         $config = require 'config/ach_processor_test.php';
-        $this -> app['config'] -> set('ach_processor', ['hsbc.company_a' => $config['hsbc']['company_a'], 'uob.company_a' => $config['uob']['company_a']]);
+        $this -> app['config'] -> set('ach_processor',
+            [
+                'hsbc' => [
+                    'company_a' => $config['hsbc']['company_a']
+                ]
+            ],
+            [
+                'uob' => [
+                    'company_a' => $config['uob']['company_a']
+                ]
+            ]
+        );
 
         $this -> migrate();
     }
@@ -54,16 +67,16 @@ class TestFileGenerator extends Orchestra\Testbench\TestCase
     {
         // Create an array of BeneficiaryAdapterInterface
         $beneficiaries = TestPayment::all();
-        $ach = HsbcAchUploadProcessorFactory::create($beneficiaries, 'ach_processor.hsbc.company_a');
+        $ach = HsbcAchUploadProcessorFactory::create($beneficiaries, 'ach_processor.hsbc.company_a', 'CashoutOct17');
         echo $ach -> getString();
     }
 
-    public function testUOBDownload()
+    public function xtestUOBDownload()
     {
         // Create an array of BeneficiaryAdapterInterface
         $beneficiaries = TestPayment::all();
 
-        $ach = UobAchUploadProcessorFactory::create($beneficiaries, 'ach_processor.uob.company_a');
+        $ach = UobAchUploadProcessorFactory::create($beneficiaries, 'ach_processor.uob.company_a', 'CashoutOct17');
         $string = $ach -> getString();
 
         // Every line in a UOB file except the first, must be exactly 900 characters wide
@@ -75,7 +88,7 @@ class TestFileGenerator extends Orchestra\Testbench\TestCase
         }
     }
 
-    public function testHSBCUpload()
+    public function xtestHSBCUpload()
     {
         //the first line is the Header
         $handle = fopen( __DIR__ ."/ifile_result.csv", "r");
