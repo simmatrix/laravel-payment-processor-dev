@@ -30,9 +30,9 @@ Call the relevant `ACHUploadProcessorFactory` subclass (either `HsbcAchUploadPro
 
 ``` php
 $beneficiaries = TestPayment::all();
-$ach = HsbcAchUploadProcessorFactory::createCsvString($beneficiaries, 'ach_processor.hsbc.company_a', 'CashoutOct17');
-echo $ach;
+$ach = HsbcAchUploadProcessorFactory::create($beneficiaries, 'ach_processor.hsbc.company_a', 'CashoutOct17');
+echo $ach -> getString();;
 ```
 
 ## License
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
