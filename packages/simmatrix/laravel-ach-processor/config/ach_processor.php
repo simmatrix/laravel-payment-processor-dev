@@ -9,10 +9,11 @@ return [
             'beneficiary_adapter' => \Simmatrix\ACHProcessor\Adapter\ExampleBeneficiaryAdapter::class,
 
             // [COMPULSORY] Batch Header Record
-            'first_party_account_branch' => '123',        // maximum length: 3 - ** Please define this yourself **
-            'first_party_account_serial' => '123456',     // maximum length: 6 - ** Please define this yourself **
-            'first_party_account_suffix' => '001',        // maximum length: 3 - ** Please define this yourself **
-            'payment_set_number' => 'C01',              // maximum length: 3 - ** Please define this yourself **
+            'first_party_account_branch' => '123',       // maximum length: 3 - ** Please define this yourself **
+            'first_party_account_serial' => '123456',    // maximum length: 6 - ** Please define this yourself **
+            'first_party_account_suffix' => '001',       // maximum length: 3 - ** Please define this yourself **
+            'payment_set_number' => 'C01',               // maximum length: 3 - ** Please define this yourself **
+            'effective_working_days' => '1',             // maximum length: 2 - how many days would it take for the amount to be debited from the first party, after the generation of this ACH file
 
             // [OPTIONAL] Batch Header Record
             'country_code' => 'MY',                     // maximum length: 2
@@ -33,10 +34,11 @@ return [
             'beneficiary_adapter' => \Simmatrix\ACHProcessor\Adapter\ExampleBeneficiaryAdapter::class,
 
             // [COMPULSORY] Batch Header Record
-            'first_party_account_branch' => '123',        // maximum length: 3 - ** Please define this yourself **
-            'first_party_account_serial' => '123456',     // maximum length: 6 - ** Please define this yourself **
-            'first_party_account_suffix' => '001',        // maximum length: 3 - ** Please define this yourself **
+            'first_party_account_branch' => '123',       // maximum length: 3 - ** Please define this yourself **
+            'first_party_account_serial' => '123456',    // maximum length: 6 - ** Please define this yourself **
+            'first_party_account_suffix' => '001',       // maximum length: 3 - ** Please define this yourself **
             'payment_set_number' => 'C01',               // maximum length: 3 - ** Please define this yourself **
+            'effective_working_days' => '1',             // maximum length: 2 - how many days would it take for the amount to be debited from the first party, after the generation of this ACH file
 
             // [OPTIONAL] Batch Header Record
             'country_code' => 'MY',                     // maximum length: 2
@@ -60,18 +62,23 @@ return [
             'beneficiary_adapter' => \Simmatrix\ACHProcessor\Adapter\ExampleBeneficiaryAdapter::class,
 
             // [COMPULSORY] Batch Header
+
             'service_type' => 'IBGINORM',                   // Maximum length: 10. 'IBGINORM' is normal service. Another option is 'IBGIEXP' which is express service, of which all receiving accounts must belong to UOB
             'originating_bank_code' => '',                  // Maximum length: 4
             'originating_branch_code' => '',                // Maximum length: 3
             'originating_account_number' => '',             // Maximum length: 11
             'originating_account_name' => 'LOREM IPSUM',    // Maximum length: 20 - CAPITAL LETTER ONLY
+            'effective_working_days' => '1',                // Maximum length: 2 - How many working days later (after generating this ACH file) that the amount of money get passed to the beneficiary / collected from debtor)
 
-            // Batch Detail
+            // [OPTIONAL] Batch Detail
 
-            // For Payroll, use '22' (Salary Credit)
-            // For Collection, use '30' (Direct Debit)
-            // For Payments, use '20' (Miscellaneous Credit), '23' (Dividend Credit), '24' (Remittance Credit), '25' (Bill Credit)
+            // For Payroll      : use '22' (Salary Credit)
+            // For Collection   : use '30' (Direct Debit)
+            // For Payments     : use '20' (Miscellaneous Credit), '23' (Dividend Credit), '24' (Remittance Credit), '25' (Bill Credit)
             'transaction_code' => '20',
+
+            // Only fill this up if your set '30' as your transaction code (If you are doing debt collection)
+            'reference' => '',
 
         ],
 
@@ -80,18 +87,23 @@ return [
             'beneficiary_adapter' => \Simmatrix\ACHProcessor\Adapter\ExampleBeneficiaryAdapter::class,
 
             // [COMPULSORY] Batch Header
+
             'service_type' => 'IBGINORM',                   // Maximum length: 10. 'IBGINORM' is normal service. Another option is 'IBGIEXP' which is express service, of which all receiving accounts must belong to UOB
             'originating_bank_code' => '',                  // Maximum length: 4
             'originating_branch_code' => '',                // Maximum length: 3
             'originating_account_number' => '',             // Maximum length: 11
             'originating_account_name' => 'LOREM IPSUM',    // Maximum length: 20 - CAPITAL LETTER ONLY
+            'effective_working_days' => '1',                // Maximum length: 1 - How many working days later (after generating this ACH file) that the amount of money get passed to the beneficiary / collected from debtor)
 
-            // Batch Detail
+            // [OPTIONAL] Batch Detail
 
-            // For Payroll, use '22' (Salary Credit)
-            // For Collection, use '30' (Direct Debit)
-            // For Payments, use '20' (Miscellaneous Credit), '23' (Dividend Credit), '24' (Remittance Credit), '25' (Bill Credit)
+            // For Payroll      : use '22' (Salary Credit)
+            // For Collection   : use '30' (Direct Debit)
+            // For Payments     : use '20' (Miscellaneous Credit), '23' (Dividend Credit), '24' (Remittance Credit), '25' (Bill Credit)
             'transaction_code' => '20',
+
+            // Only fill this up if your set '30' as your transaction code (If you are doing debt collection)
+            'reference' => '',
 
         ],
 
