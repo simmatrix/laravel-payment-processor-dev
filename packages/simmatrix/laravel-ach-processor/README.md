@@ -30,7 +30,13 @@ Call the relevant `ACHUploadProcessorFactory` subclass (either `HsbcAchUploadPro
 
 ``` php
 $beneficiaries = TestPayment::all();
-$ach = HsbcAchUploadProcessorFactory::create($beneficiaries, 'ach_processor.hsbc.company_a', 'CashoutOct17');
+$ach = HsbcAchUploadProcessorFactory::create($beneficiaries, 'ach_processor.hsbc_mri.company_a', 'CashoutOct17');
+echo $ach -> getString();
+```
+
+``` php
+$beneficiaries = TestPayment::all();
+$ach = HsbcAchIFileUploadProcessorFactory::create($beneficiaries, 'ach_processor.hsbc_ifile.company_a', 'CashoutOct17');
 echo $ach -> getString();
 ```
 

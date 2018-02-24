@@ -3,14 +3,15 @@
 namespace Simmatrix\ACHProcessor\Factory\HSBC;
 
 use Simmatrix\ACHProcessor\Services\CoreHelper;
-use Simmatrix\ACHProcessor\Factory\HSBC\Header\HSBCBatchHeader;
-use Simmatrix\ACHProcessor\Factory\HSBC\HSBCBeneficiaryFactory;
+use Simmatrix\ACHProcessor\Factory\HSBC\Header\HSBCFileHeaderIFile;
+use Simmatrix\ACHProcessor\Factory\HSBC\Header\HSBCBatchHeaderIFile;
+use Simmatrix\ACHProcessor\Factory\HSBC\HSBCBeneficiaryIFileFactory;
 use Simmatrix\ACHProcessor\Adapter\Beneficiary\BeneficiaryAdapterInterface;
 use Simmatrix\ACHProcessor\ACHUploadProcessor;
 
 use Illuminate\Config\Repository;
 
-class HsbcAchUploadProcessorFactory
+class HsbcAchIFileUploadProcessorFactory
 {
     /**
      * @param Collection of entries to be passed into the adapter
@@ -21,7 +22,6 @@ class HsbcAchUploadProcessorFactory
     public static function create($beneficiaries, $config_key, $payment_description)
     {
         $helper = new CoreHelper( $config_key );
-        $file_reference = $helper -> getFileReference();
         $config = new Repository(config($config_key));
         $adapter_class = $config['beneficiary_adapter'];
 
@@ -29,18 +29,26 @@ class HsbcAchUploadProcessorFactory
             return new $adapter_class($payment);
         }) -> toArray();
 
-        $beneficiary_lines = collect($beneficiaries) -> map( function(BeneficiaryAdapterInterface $beneficiary) use ($config_key, $payment_description){
-            return HSBCBeneficiaryFactory::create($beneficiary, $config_key, $payment_description);
-        }) -> toArray();
-
         $ach = new ACHUploadProcessor($beneficiaries);
-        $batch_header = new HSBCBatchHeader($beneficiaries, $config_key, $payment_description);
 
+        $file_header = new HSBCFileHeaderIFile($beneficiaries, $config_key, $payment_description);
+        $file_header -> setColumnDelimiter(",");
+
+        $batch_header = new HSBCBatchHeaderIFile($beneficiaries, $config_key, $payment_description);
+        $batch_header -> setColumnDelimiter(",");
+
+        $beneficiary_lines = collect($beneficiaries) -> map( function(BeneficiaryAdapterInterface $beneficiary) use ($config_key, $payment_description){
+            return HSBCBeneficiaryIFileFactory::create($beneficiary, $config_key, $payment_description);
+        }) -> toArray();
+        
+        $ach -> setFileHeader($file_header);
         $ach -> setBatchHeader($batch_header);
         $ach -> setBeneficiaryLines($beneficiary_lines);
-        $ach -> setIdentifier($file_reference);
-        $ach -> setFileName('hsbc_ach_'.time());
-        $ach -> setFileExtension('txt');
+
+        $ach -> setIdentifier($helper -> getFileReference());
+        $ach -> setFileName('hsbc_ach_ifile_'.time());
+        $ach -> setFileExtension('csv');
+
         return $ach;
     }
 }
